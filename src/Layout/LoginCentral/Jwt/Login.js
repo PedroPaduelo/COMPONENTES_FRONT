@@ -1,4 +1,9 @@
 import React from 'react';
+
+import { useHistory } from "react-router-dom";
+
+
+
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -46,8 +51,22 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
+
+
+
+
+
 export default function SignIn() {
   const classes = useStyles();
+  const history = useHistory();
+
+
+  async function Logar(response){
+
+    history.push('/Painel')
+  } 
+  
 
   return (
     <Container component="main" maxWidth="xs">
@@ -92,6 +111,7 @@ export default function SignIn() {
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={Logar}
           >
             Sign In
           </Button>

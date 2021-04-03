@@ -52,6 +52,4 @@ export const Label = styled.span`
     display: inline-block;
     background: ${props => props.color};
     margin: 0.2rem;
-
-
 `;

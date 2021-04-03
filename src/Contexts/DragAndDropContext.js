@@ -19,13 +19,16 @@ const list = [
         "user": "https://avatars.githubusercontent.com/u/37857002?s=460&u=e865d59b45cd0caa12923ddc5df3dc424e1ca5b7&v=4",
         "lebels":[
           {
-            "content": "#FF5733"
+            "content": "#FF5733",
+            "desc": "Urgente"
           },
           {
-            "content": "#FF5733"
+            "content": "#FF5733",
+            "desc": ""
           },
           {
-            "content": "#FF5733"
+            "content": "#FF5733",
+            "desc": ""
           }
         ]
       },

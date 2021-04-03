@@ -15,7 +15,7 @@ import { Container, Label } from './styles';
 function Card({ data , index, indexList, id_list }) {
 
   const ref = useRef();
-  const { moveItemHover, moveItemDrop } = useContext(DragAndDropContext);
+  const { moveItemHover } = useContext(DragAndDropContext);
   const id = data.id
 
 
@@ -100,51 +100,8 @@ function Card({ data , index, indexList, id_list }) {
 
 
       console.log("DROP_BY_CARD")
-    },
-
-
-
-
-
-    // drop(item, monitor){
-
-
-    //   const draggedListIndex =  item.fromList;
-    //   const targetListIndex = indexList;
-
-    //   const draggedIndex =  item.fromItem;
-    //   const targetIndex = index;
-
-    //   const fromList = item.fromList;
-    //   const toList = indexList;
-    //   const fromItem = item.fromItem;
-    //   const toItem = index;
-
-    //   const flagueMove = "CARD_DROP"
-
-
-    //   if(draggedIndex === targetIndex && draggedListIndex === targetListIndex ) return;
-
-    //   const targetSize = ref.current.getBoundingClientRect();
-    //   const targetCenter = ( targetSize.bottom - targetSize.top )/2;
-      
-    //   const draggetOffcet = monitor.getClientOffset();
-    //   const draggetTop = draggetOffcet.y - targetSize.top;
-
-    //   if(draggedIndex < targetIndex && draggetTop < targetCenter && draggedListIndex === targetListIndex)return; 
-    //   if(draggedIndex > targetIndex && draggetTop > targetCenter && draggedListIndex === targetListIndex)return; 
-
-
-
-      
-    //   moveItemDrop(fromList,toList,fromItem,toItem,flagueMove)
-    //   item.fromList = toList;
-    //   item.fromItem = index;
-
-    //   console.log(flagueMove)
-
-    // } 
-
+    }
+    
   }) 
 
 
@@ -155,7 +112,7 @@ function Card({ data , index, indexList, id_list }) {
   return (
     <Container ref={ref} isDragging={isDragging} >
       <header>
-        {data.lebels && data.lebels.map(label => ( <Label key={label.id} color={label.content} /> ))}
+        {data.lebels && data.lebels.map(label => ( <Label key={label.id} color={label.content}></Label>))}
       </header>
 
       <p> 

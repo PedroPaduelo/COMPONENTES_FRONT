@@ -10,16 +10,11 @@ import { Container, Label } from './styles';
 
 
 
-
-
 function Card({ data , index, indexList, id_list }) {
 
   const ref = useRef();
   const { moveItemHover } = useContext(DragAndDropContext);
   const id = data.id
-
-
-
 
 
   // possibilita a função de pegar e arrastar. 
@@ -38,8 +33,6 @@ function Card({ data , index, indexList, id_list }) {
 
   })
 
-
-
   // possibilita a largar o item
   const [, dropRef] = useDrop({
     accept: "CARD",
@@ -47,58 +40,50 @@ function Card({ data , index, indexList, id_list }) {
     
     hover(item, monitor){
 
+      // De onde vem o item
       const fromItem = item.fromItem;
       const fromList = item.fromList;
+
+      // Para onde vai o item
       const toList = indexList;
       const toItem = index;
 
+      // Para onde vai o item
       const flagueMove = "CARD_HOVER"
 
-
-
-
-      const draggedListIndex =  item.fromList;
-      const targetListIndex = indexList;
-
-      const draggedIndex = item.fromItem;
-      const targetIndex = index;
-
-
-      if(draggedIndex === targetIndex && draggedListIndex === targetListIndex ) {
+      // Evita que tenha mudança com o memso card
+      if(fromItem === toItem && fromList === toList ) {
         return;
       }
 
-
-
+      // Pega o tamnha e o centro do card 
       const targetSize = ref.current.getBoundingClientRect();
       const targetCenter = ( targetSize.bottom - targetSize.top )/2;
 
-      // console.log(targetCenter)
-      
+      // Pega o quanto um card esta encima do outro 
       const draggetOffcet = monitor.getClientOffset();
       const draggetTop = draggetOffcet.y - targetSize.top;
 
-      // console.log(draggetTop)
 
-
-      if(draggedIndex < targetIndex && draggetTop < targetCenter && draggedListIndex === targetListIndex){
+      // Valida se o Item e menor que o destino lista e a mesma e se não passou do centro
+      if(fromItem < toItem && draggetTop < targetCenter && fromList === toList){
         return; 
       }
 
-      if(draggedIndex > targetIndex && draggetTop > targetCenter && draggedListIndex === targetListIndex){
+      // Valida se o Item e menor que o destino lista e a mesma e se não passou do centro
+      if(fromItem > toItem && draggetTop > targetCenter && fromList === toList){
         return; 
       } 
 
+
+      // Efetua a mudança dos cards
       moveItemHover(fromList,toList,fromItem,toItem,flagueMove)
+
+      item.fromList = toList;
+      item.fromItem = toItem;
 
 
       
-      item.fromList = indexList;
-      item.fromItem = index;
-
-
-
-
       console.log("DROP_BY_CARD")
     }
     

@@ -23,11 +23,11 @@ function List({ data, indexList }) {
       const fromItem = item.fromItem;
       const fromList = item.fromList;
       const toList = indexList;
-      let flagueMove = "LIST"
+      
+      let flagueMove = "LIST_DROP"
 
       // Controle de movimento na mesma lista
       if(toList === fromList ){
-        console.log("SCAP")
         return;
       }
       

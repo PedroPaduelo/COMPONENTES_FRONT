@@ -19,18 +19,20 @@ const list = [
         "user": "https://avatars.githubusercontent.com/u/37857002?s=460&u=e865d59b45cd0caa12923ddc5df3dc424e1ca5b7&v=4",
         "lebels":[
           {
-            "content": "#FF5733",
+            "content": "#696969",
             "desc": "Urgente"
           },
           {
-            "content": "#FF5733",
+            "content": "#191970",
             "desc": ""
           },
           {
-            "content": "#FF5733",
+            "content": "#FFA500",
             "desc": ""
           }
-        ]
+        ],
+        "checklist": []
+
       },
       {
         "id": 2,
@@ -39,12 +41,13 @@ const list = [
         "user": "https://avatars.githubusercontent.com/u/37857002?s=460&u=e865d59b45cd0caa12923ddc5df3dc424e1ca5b7&v=4",
         "lebels":[
           {
-            "content": "#DAF7A6"
+            "content": "#FF0000"
           },
           {
-            "content": "#FF5733"
+            "content": "#FF0000"
           }
-        ]
+        ],
+        "checklist": []
       },
       {
         "id": 3,
@@ -58,7 +61,38 @@ const list = [
           {
             "content": "#FF5733"
           }
-        ]
+        ],
+        "checklist": []
+      },
+      {
+        "id": 5,
+        "order_id": 4,
+        "content": "TESTE 3",
+        "user": "https://avatars.githubusercontent.com/u/37857002?s=460&u=e865d59b45cd0caa12923ddc5df3dc424e1ca5b7&v=4",
+        "lebels":[
+          {
+            "content": "#DAF7A6"
+          },
+          {
+            "content": "#FF5733"
+          }
+        ],
+        "checklist": []
+      },
+      {
+        "id": 6,
+        "order_id": 5,
+        "content": "TESTE 3",
+        "user": "https://avatars.githubusercontent.com/u/37857002?s=460&u=e865d59b45cd0caa12923ddc5df3dc424e1ca5b7&v=4",
+        "lebels":[
+          {
+            "content": "#DAF7A6"
+          },
+          {
+            "content": "#FF5733"
+          }
+        ],
+        "checklist": []
       }
     ]
   },
@@ -97,14 +131,6 @@ function DragAndDropProvider({ children }) {
 
   useEffect(() => {
     setLists(list)
-    // api
-    //   .get("/lists")
-    //   .then((response) => {
-    //   // setLists(response.data);
-    //   })
-    //   .catch((error) => {
-    //     alert("Ocorreu um erro ao buscar os items");
-    //   });
   }, []);
 
 
@@ -113,79 +139,55 @@ function DragAndDropProvider({ children }) {
 
   async function moveItemDrop( fromList, toList, fromItem, flagueMove ){
 
-    if(flagueMove === "LIST"){
+    if(flagueMove === "LIST_DROP"){
 
-      const teste = produce(lists, draft=>{
+      const auxiLists = produce(lists, draft=>{
         const dragged = draft[fromList].cards[fromItem]
         draft[fromList].cards.splice(fromItem, 1);
         draft[toList].cards.push(dragged);
       })
 
-      let teste2 = []
 
-      teste[toList].cards.forEach(function (item, indice, array) {
-
-        teste2.push({
+      let cardLists = []
+      auxiLists[toList].cards.forEach(function (item, indice, array) {
+        cardLists.push({
             id: item.id,
             order_id: indice,
-            list_id: teste[toList].id
+            list_id: auxiLists[toList].id
           }
         )
       }); 
 
-      console.log(teste)
 
-      // api
-      // .put(`/cards`, teste2)
-      // .then((response) => {
-      // })
-      // .catch((error) => {
-      //   alert("Ocorreu um erro ao buscar os items");
-      // }); 
-
-      setLists(teste);
+      setLists(auxiLists);
     }
   }
 
   async function moveItemHover( fromList, toList, fromItem, toItem, flagueMove){
 
-
     if(flagueMove === "CARD_HOVER"){
 
-      console.log(fromList, toList, fromItem, toItem, flagueMove)
-
-      const teste = produce(lists, draft=>{
+      const auxiLists = produce(lists, draft=>{
         const dragged = draft[fromList].cards[fromItem]
         draft[fromList].cards.splice(fromItem, 1);
         draft[toList].cards.splice(toItem, 0, dragged);
       })
 
-      let teste2 = []
-
-      teste[toList].cards.forEach(function (item, indice, array) {
-        teste2.push({
+      let cardLists = []
+      auxiLists[toList].cards.forEach(function (item, indice, array) {
+        cardLists.push({
             id: item.id,
             order_id: indice,
-            list_id: teste[toList].id
+            list_id: auxiLists[toList].id
           }
         )
       }); 
 
-      console.log(teste)
-    // //  api
-    // //   .put(`/cards`, teste2)
-    // //   .then((response) => {
-    // //   })
-    // //   .catch((error) => {
-    // //     alert("Ocorreu um erro ao buscar os items");
-    // //   });  
-      
-      setLists( teste );
+      setLists(auxiLists);
     }
 
-
-
   }
+
 
   async function registra(card){
 
@@ -206,19 +208,8 @@ function DragAndDropProvider({ children }) {
       })
       .catch((error) => {
         alert("Ocorreu um erro ao buscar os items");
-      });    
+    });    
   }
-
-
-
-
-
-
-
-
-
-
-
 
   return (
     <DragAndDropContext.Provider value={{ 

@@ -6,7 +6,7 @@ export const Container = styled.div`
     height: 100%;
     flex: 0 0 28rem;
 
-    opacity: ${props => props.done === "true" ? 0.6 : 1};
+    opacity: ${props => props.done === 1 ? 0.6 : 1};
 
 
     & + div{

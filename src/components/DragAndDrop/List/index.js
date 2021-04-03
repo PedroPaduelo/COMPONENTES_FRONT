@@ -1,8 +1,6 @@
 import React, { useContext } from 'react';
 import { useDrop } from 'react-dnd';
-
 import { Container } from './styles';
-
 import { DragAndDropContext } from '../../../Contexts/DragAndDropContext'
 
 
@@ -13,24 +11,34 @@ import Card from "../Card"
 
 function List({ data, indexList }) {
 
-  const { moveItemDrop, cards } = useContext(DragAndDropContext);
+  const { moveItemDrop } = useContext(DragAndDropContext);
 
-
- 
 
   const [, dropRef] = useDrop({
     accept: "CARD",
 
     drop(item, monitor){
+
+      // Dasdos do item 
       const fromItem = item.fromItem;
       const fromList = item.fromList;
       const toList = indexList;
       let flagueMove = "LIST"
 
-      if(toList === fromList )return;
+      // Controle de movimento na mesma lista
+      if(toList === fromList ){
+        console.log("SCAP")
+        return;
+      }
+      
+      // função de alteração de item
+      moveItemDrop(fromList,toList,fromItem,flagueMove)
 
-      moveItemDrop(fromList,toList,fromItem,0,flagueMove)
+      // atualização do item
       item.fromList = toList
+
+      console.log("DROP_BY_LIST")
+
     } 
   }) 
 
@@ -49,7 +57,7 @@ function List({ data, indexList }) {
 
       <ul>
         {
-          cards.map((card, index) => (<Card key={card.id} indexList={indexList} id_list={data.id} index={index} data={card}/>  ))
+          data.cards.map((card, index) => (<Card key={card.id} indexList={indexList} id_list={data.id} index={index} data={card}/>  ))
         }
       </ul>
 

@@ -11,14 +11,10 @@ function Board() {
     lists
   } = useContext(DragAndDropContext);
 
- console.log(lists)
-  
   return (
-
-      <Container>
-          {lists.map((itenlist , index)=> (<List  key={itenlist.title} indexList={index} data={itenlist} />))}
-      </Container>  
-
+    <Container>
+        {lists.map((itenlist , index)=> (<List  key={itenlist.title} indexList={index} data={itenlist} />))}
+    </Container>
   )
 }
 

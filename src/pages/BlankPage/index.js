@@ -1,16 +1,18 @@
 import React from 'react';
 
-// import { Container } from './styles';
 
-import DragAndDrop from '../../components/DragAndDrop/Board/index';
-import { DragAndDropProvider } from '../../Contexts/DragAndDropContext'
+import DragAndDrop from '../../components/DragAndDrop';
+
+import Modal from './ModalCriaFila';
+
 
 
 function BlankPage() {
   return (
-    <DragAndDropProvider>
+    <div>
+      <Modal/>
       <DragAndDrop /> 
-    </DragAndDropProvider>
+    </div>
   );
 }
 

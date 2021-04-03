@@ -3,7 +3,7 @@ import React , { useContext } from 'react';
 import { Container } from './styles';
 import List from "../List"
 
-import {DragAndDropContext} from '../../../Contexts/DragAndDropContext'
+import {DragAndDropContext} from '../Context/DragAndDropContext'
 
 function Board() {
   

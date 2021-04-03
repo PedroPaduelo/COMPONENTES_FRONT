@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
 import { useDrop } from 'react-dnd';
 import { Container } from './styles';
-import { DragAndDropContext } from '../../../Contexts/DragAndDropContext'
-
 
 import Card from "../Card"
+import {DragAndDropContext} from '../Context/DragAndDropContext'
+
+
 
 
 

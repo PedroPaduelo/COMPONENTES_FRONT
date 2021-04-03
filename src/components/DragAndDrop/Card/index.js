@@ -1,13 +1,8 @@
 import React, {useContext, useRef} from 'react';
 import { useDrag, useDrop } from "react-dnd";
-
-import { DragAndDropContext } from '../../../Contexts/DragAndDropContext'
-
 import { Container, Label } from './styles';
 
-
-
-
+import {DragAndDropContext} from '../Context/DragAndDropContext'
 
 
 function Card({ data , index, indexList, id_list }) {
